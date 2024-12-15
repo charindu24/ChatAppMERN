@@ -16,6 +16,8 @@ dotenv.config();
 app.use(express.json());  // This is necessary for parsing JSON request body
 app.use(cookieParser());
 
+
+
 // Mount the auth routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
