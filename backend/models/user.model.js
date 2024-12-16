@@ -1,34 +1,35 @@
-import mongoose, { mongo } from "mongoose"; // Importing mongoose for database operations
+import mongoose from "mongoose";
 
-// Define a schema for the User collection
-const userSchema = new mongoose.Schema({
-    fullName: {
-        type: String, // Specifies the type of the field as String
-        required: true, // This field is mandatory
-    },
-    username: {
-        type: String, // Specifies the type of the field as String
-        required: true, // This field is mandatory
-        unique: true, // Ensures that the username is unique across all users
-    },
-    password: {
-        type: String, // Specifies the type of the field as String
-        required: true, // This field is mandatory
-        minlength: 6, // Password must be at least 6 characters long
-    },
-    gender: {
-        type: String, // Specifies the type of the field as String
-        required: true, // This field is mandatory
-        enum: ["male", "female"], // Restricts the value of gender to "male" or "female" only
-    },
-    profilePic: {
-        type: String, // Specifies the type of the field as String
-        default: "", // Sets a default value of an empty string if no profile picture is provided
-    },
-});
+const userSchema = new mongoose.Schema(
+	{
+		fullName: {
+			type: String,
+			required: true,
+		},
+		username: {
+			type: String,
+			required: true,
+			unique: true,
+		},
+		password: {
+			type: String,
+			required: true,
+			minlength: 6,
+		},
+		gender: {
+			type: String,
+			required: true,
+			enum: ["male", "female"],
+		},
+		profilePic: {
+			type: String,
+			default: "",
+		},
+		// createdAt, updatedAt => Member since <createdAt>
+	},
+	{ timestamps: true }
+);
 
-// Create a model from the schema
-// The 'User' model represents the 'users' collection in the database
 const User = mongoose.model("User", userSchema);
 
-export default User; // Export the model to use it in other parts of the application
+export default User;
