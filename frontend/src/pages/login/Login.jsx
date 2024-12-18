@@ -15,14 +15,14 @@ const Login = () => {
             <label className="label p-2">
               <span className="textbase label-text">Username</span>
             </label>
-            <input type="text" placeholder="Enter username" className="w-full input input-bordered h-10" />
+            <input type="text" placeholder="Enter username" className="w-full input input-bordered text-emerald-400 h-10" />
           </div>
 
           <div>
           <label className="label">
               <span className="textbase label-text">Password</span> 
             </label>
-            <input type="text" placeholder="Enter Password" className="w-full input input-bordered h-10" />
+            <input type="text" placeholder="Enter Password" className="w-full input input-bordered text-emerald-400 h-10" />
             
             
           </div>
