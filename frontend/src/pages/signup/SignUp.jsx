@@ -1,7 +1,31 @@
+import { Link } from "react-router-dom";
 import GenderCheckbox from "./GenderCheckbox";
+import { useState } from "react";
+import userSignup from "../../hooks/userSignup";
 
 
 const Signup = () => {
+  const [inputs, setInputs] = useState({
+    fullname: '',
+    username: '',
+    password: '',
+    confirmPassword:'',
+    gender:''
+  });
+
+  const { loading, signup } = userSignup();
+
+  const handleCheckboxChange = (gender) => {
+    setInputs({...inputs, gender})
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signup(inputs);
+  }
+
+
+
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-purple-400 bg-clip-padding backdrop-filter
@@ -11,44 +35,53 @@ const Signup = () => {
           <span className="text-emerald-400"> VibeChat</span>
         </h1>
         
-        <form>
+        <form onSubmit={handleSubmit}>
         <div>
             {/* Full name*/}
             <label className="label p-2">
               <span className="textbase label-text">Full Name</span>
             </label>
-            <input type="text" placeholder="John doe" className="w-full input input-bordered h-10 text-emerald-400" />
+            <input type="text" placeholder="John doe" className="w-full input input-bordered h-10 text-emerald-400"
+              value={inputs.fullname}
+              onChange={(e) => setInputs({...inputs, fullname: e.target.value})}
+            />
           </div>
           {/* Username*/}
           <div>
             <label className="label p-2">
               <span className="textbase label-text">Username</span>
             </label>
-            <input type="text" placeholder="Username" className="w-full input input-bordered text-emerald-400 h-10" />
+            <input type="text" placeholder="Username" className="w-full input input-bordered text-emerald-400 h-10"
+              value={inputs.username}
+              onChange={(e) => setInputs({...inputs, username: e.target.value})}
+            />
           </div>
           {/* Create a Password*/}
           <div>
             <label className="label p-2">
               <span className="textbase label-text">Password</span>
             </label>
-            <input type="text" placeholder="Enter password" className="w-full input input-bordered text-emerald-400 h-10" />
+            <input type="text" placeholder="Enter password" className="w-full input input-bordered text-emerald-400 h-10"
+            value={inputs.password}
+            onChange={(e) => setInputs({...inputs, password: e.target.value})}
+            />
           </div>
           {/* Confirm Password*/}
           <div>
             <label className="label p-2">
               <span className="textbase label-text">confirm Password</span>
             </label>
-            <input type="text" placeholder="Confirm password" className="w-full input input-bordered text-emerald-400 h-10" />
+            <input type="text" placeholder="Confirm password" className="w-full input input-bordered text-emerald-400 h-10"
+              value={inputs.confirmPassword}
+              onChange={(e) => setInputs({...inputs, confirmPassword: e.target.value})}
+            />
           </div>
 
-          <GenderCheckbox />
+          <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender} />
 
-
-
-
-          <a href="#" className="text-sm hover:underline hover:text-emerald-400 mt-2 inline-block">
+          <Link to="/login" className="text-sm hover:underline hover:text-emerald-400 mt-2 inline-block">
             Already have an account?
-          </a>
+          </Link>
           <div>
           <button className="btn btn-block btn-sm mt-2 border btn-success">Sign Up</button>
           </div>
