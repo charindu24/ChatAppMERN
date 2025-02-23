@@ -29,3 +29,4 @@ coverage/
 # Temporary files created by editors
 *.swp
 *.swo
+.vercel

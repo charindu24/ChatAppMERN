@@ -4,13 +4,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-  "server": "nodemon backend/server.js",
-  "start": "node backend/server.js",
-  "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-  "dev": "concurrently \"npm run server\" \"npm run frontend\"",
-  "frontend": "cd frontend && npm start"
-}
-,
+    "server": "nodemon backend/server.js",
+    "start": "node backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+  },
   "keywords": [],
   "author": "Charindu Bandaranayake",
   "license": "ISC",
